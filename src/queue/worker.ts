@@ -1,6 +1,7 @@
 import { Worker } from "bullmq";
 import { PrismaClient } from "@prisma/client";
 import { Event } from "../api/routes";
+import { configuration } from "../config/config";
 
 const prisma = new PrismaClient();
 
@@ -16,7 +17,7 @@ export const worker = new Worker<Event>(
 
     console.log(`Processed event: ${type}`);
   },
-  { connection: { host: "localhost", port: 6379 } }
+  { connection: { host: configuration.redisHost, port: 6379 } }
 );
 
 worker.on("failed", (job, err) => {
