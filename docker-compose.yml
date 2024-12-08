@@ -1,0 +1,26 @@
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password1@db:5433/games?schema=public
+    depends_on:
+      - db
+      - redis
+
+  worker:
+    build: .
+    command: ts-node src/queue/worker.ts
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password1
+      POSTGRES_DB: games
