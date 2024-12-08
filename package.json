@@ -1,0 +1,16 @@
+{
+    "name": "game-events-ingestion",
+    "version": "1.0.0",
+    "scripts": {},
+    "dependencies": {
+        "bullmq": "^5.31.2",
+        "express": "^4.21.2",
+        "pg": "^8.13.1",
+        "prisma": "^6.0.1",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "@types/node": "^22.10.1"
+    }
+}
