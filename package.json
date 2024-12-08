@@ -1,8 +1,12 @@
 {
     "name": "game-events-ingestion",
     "version": "1.0.0",
-    "scripts": {},
+    "scripts": {
+        "migrate": "npx prisma migrate dev --schema=./src/prisma/schema.prisma",
+        "generate": "npx prisma generate --schema=./src/prisma/schema.prisma"
+    },
     "dependencies": {
+        "@prisma/client": "^6.0.1",
         "bullmq": "^5.31.2",
         "express": "^4.21.2",
         "pg": "^8.13.1",
