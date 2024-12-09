@@ -19,14 +19,22 @@ services:
     depends_on:
       - redis
 
+  player_worker:
+    build: .
+    command: ts-node src/queue/playerWorker.ts
+    env_file:
+      - .env.${NODE_ENV}
+    depends_on:
+      - redis
+
   redis:
     image: redis:alpine
 
   db:
-    image: postgres:13
+    image: postgres:17
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password1
       POSTGRES_DB: games
     ports:
-      - "5433:5432"
+      - "5432:5432"
